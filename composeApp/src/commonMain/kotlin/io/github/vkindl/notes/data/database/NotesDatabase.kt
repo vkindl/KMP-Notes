@@ -1,9 +1,10 @@
-package io.github.vkindl.notes.data
+package io.github.vkindl.notes.data.database
 
 import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
+import io.github.vkindl.notes.data.model.NoteEntity
 
 @Database(entities = [NoteEntity::class], version = 1)
 @ConstructedBy(NotesDatabaseConstructor::class)

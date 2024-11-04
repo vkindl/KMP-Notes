@@ -2,7 +2,7 @@ package io.github.vkindl.notes.di
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import io.github.vkindl.notes.data.NotesDatabase
+import io.github.vkindl.notes.data.database.NotesDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.koin.dsl.module
 import platform.Foundation.NSDocumentDirectory

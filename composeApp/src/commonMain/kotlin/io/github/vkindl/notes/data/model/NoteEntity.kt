@@ -1,4 +1,4 @@
-package io.github.vkindl.notes.data
+package io.github.vkindl.notes.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
