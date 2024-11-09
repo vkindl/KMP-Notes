@@ -5,19 +5,25 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import io.github.vkindl.notes.feature.detail.presentation.NoteDetailScreen
+import io.github.vkindl.notes.feature.notes.presentation.NotesScreen
 import io.github.vkindl.notes.navigation.Destination.Detail
 import io.github.vkindl.notes.navigation.Destination.Notes
-import io.github.vkindl.notes.presentation.NoteDetailScreen
-import io.github.vkindl.notes.presentation.NotesScreen
 
 @Composable
 fun NotesAppGraph(navController: NavHostController = rememberNavController()) {
     NavHost(navController = navController, startDestination = Notes) {
         composable<Notes> {
-            NotesScreen()
+            NotesScreen(
+                navToDetail = { id ->
+                    navController.navigate(Detail(id))
+                }
+            )
         }
         composable<Detail> {
-            NoteDetailScreen()
+            NoteDetailScreen(
+                navBack = { navController.navigateUp() }
+            )
         }
     }
 }
