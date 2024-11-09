@@ -1,7 +1,7 @@
-package io.github.vkindl.notes.domain.usecase
+package io.github.vkindl.notes.feature.notes.domain
 
-import io.github.vkindl.notes.domain.NotesRepository
-import io.github.vkindl.notes.domain.model.Note
+import io.github.vkindl.notes.core.domain.NotesRepository
+import io.github.vkindl.notes.core.domain.Note
 import kotlinx.coroutines.flow.Flow
 
 class ObserveNotesUseCase(

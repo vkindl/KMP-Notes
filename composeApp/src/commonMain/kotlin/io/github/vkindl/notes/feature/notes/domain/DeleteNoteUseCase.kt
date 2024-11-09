@@ -1,6 +1,6 @@
-package io.github.vkindl.notes.domain.usecase
+package io.github.vkindl.notes.feature.notes.domain
 
-import io.github.vkindl.notes.domain.NotesRepository
+import io.github.vkindl.notes.core.domain.NotesRepository
 
 class DeleteNoteUseCase(
     private val notesRepository: NotesRepository
