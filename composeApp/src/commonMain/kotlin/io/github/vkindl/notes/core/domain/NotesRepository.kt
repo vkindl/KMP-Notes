@@ -1,11 +1,12 @@
-package io.github.vkindl.notes.domain
+package io.github.vkindl.notes.core.domain
 
-import io.github.vkindl.notes.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 
 interface NotesRepository {
 
     fun observeAllNotes(): Flow<List<Note>>
+
+    fun observeNoteById(id: Int): Flow<Note?>
 
     suspend fun insertNote(note: Note)
 

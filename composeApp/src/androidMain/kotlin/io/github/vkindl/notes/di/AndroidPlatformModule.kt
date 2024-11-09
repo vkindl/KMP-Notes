@@ -2,15 +2,16 @@ package io.github.vkindl.notes.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import io.github.vkindl.notes.data.database.NotesDatabase
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import io.github.vkindl.notes.core.data.database.NotesDatabase
+import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 
 actual val platformModule = module {
-    single<NotesDatabase> { getNotesDatabaseBuilder(get()).build() }
+    single<NotesDatabase> { createNotesDatabase(get()) }
 }
 
-private fun getNotesDatabaseBuilder(context: Context): RoomDatabase.Builder<NotesDatabase> {
+private fun createNotesDatabase(context: Context): NotesDatabase {
     val appContext = context.applicationContext
     val dbFile = appContext.getDatabasePath("notes.db")
 
@@ -18,5 +19,7 @@ private fun getNotesDatabaseBuilder(context: Context): RoomDatabase.Builder<Note
         context,
         NotesDatabase::class.java,
         dbFile.absolutePath
-    )
+    ).setDriver(BundledSQLiteDriver())
+        .setQueryCoroutineContext(Dispatchers.IO)
+        .build()
 }

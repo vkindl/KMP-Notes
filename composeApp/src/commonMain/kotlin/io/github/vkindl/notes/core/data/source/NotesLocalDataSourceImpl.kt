@@ -1,7 +1,7 @@
-package io.github.vkindl.notes.data.source
+package io.github.vkindl.notes.core.data.source
 
-import io.github.vkindl.notes.data.database.NotesDao
-import io.github.vkindl.notes.data.model.NoteEntity
+import io.github.vkindl.notes.core.data.database.NotesDao
+import io.github.vkindl.notes.core.data.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
 class NotesLocalDataSourceImpl(

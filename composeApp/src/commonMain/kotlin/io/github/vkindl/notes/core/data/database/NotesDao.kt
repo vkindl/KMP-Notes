@@ -1,10 +1,10 @@
-package io.github.vkindl.notes.data.database
+package io.github.vkindl.notes.core.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import io.github.vkindl.notes.data.model.NoteEntity
+import io.github.vkindl.notes.core.data.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
