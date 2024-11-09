@@ -4,6 +4,11 @@
     <string name="notes_screen_empty_state">No items found</string>
     <string name="notes_screen_add_note_button_text">Add Note</string>
 
+    <!-- Note Detail Screen -->
+    <string name="note_detail_screen_title">Note Detail</string>
+    <string name="note_detail_screen_note_title_placeholder">Title</string>
+    <string name="note_detail_screen_note_description_placeholder">Description</string>
+
     <!-- Common -->
     <string name="common_content_description_add">Add</string>
     <string name="common_content_description_back">Back</string>
