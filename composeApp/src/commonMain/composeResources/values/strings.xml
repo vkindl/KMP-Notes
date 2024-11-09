@@ -1,0 +1,12 @@
+<resources>
+    <!-- Notes Screen -->
+    <string name="notes_screen_title">Notes</string>
+    <string name="notes_screen_empty_state">No items found</string>
+    <string name="notes_screen_add_note_button_text">Add Note</string>
+
+    <!-- Common -->
+    <string name="common_content_description_add">Add</string>
+    <string name="common_content_description_back">Back</string>
+    <string name="common_content_description_delete">Delete</string>
+    <string name="common_content_description_save">Save</string>
+</resources>
