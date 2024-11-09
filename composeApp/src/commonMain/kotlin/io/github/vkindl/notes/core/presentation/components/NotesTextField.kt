@@ -1,4 +1,4 @@
-package io.github.vkindl.notes.core.presentation
+package io.github.vkindl.notes.core.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.LocalTextStyle
@@ -25,7 +25,12 @@ fun NotesTextField(
         singleLine = singleLine,
         textStyle = textStyle,
         onValueChange = onValueChange,
-        placeholder = { Text(text = placeholder) },
+        placeholder = {
+            Text(
+                text = placeholder,
+                style = textStyle
+            )
+        },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,

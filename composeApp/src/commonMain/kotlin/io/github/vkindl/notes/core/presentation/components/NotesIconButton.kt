@@ -1,4 +1,4 @@
-package io.github.vkindl.notes.core.presentation
+package io.github.vkindl.notes.core.presentation.components
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton

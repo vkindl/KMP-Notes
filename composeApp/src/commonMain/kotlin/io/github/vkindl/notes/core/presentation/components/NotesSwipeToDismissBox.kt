@@ -1,4 +1,4 @@
-package io.github.vkindl.notes.core.presentation
+package io.github.vkindl.notes.core.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -17,10 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import composemultiplatformnotes.composeapp.generated.resources.Res
 import composemultiplatformnotes.composeapp.generated.resources.common_content_description_delete
+import io.github.vkindl.notes.core.presentation.theme.dimens
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -46,8 +45,8 @@ fun NotesSwipeToDismissBox(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(Color.Red)
+                    .clip(RoundedCornerShape(MaterialTheme.dimens.medium))
+                    .background(MaterialTheme.colorScheme.error)
             ) {
                 DeleteIcon(modifier = Modifier.align(Alignment.CenterEnd))
             }
@@ -62,9 +61,9 @@ private fun DeleteIcon(
     modifier: Modifier = Modifier
 ) {
     Icon(
-        modifier = modifier.padding(16.dp),
+        modifier = modifier.padding(MaterialTheme.dimens.medium),
         imageVector = Icons.Default.Delete,
-        tint = MaterialTheme.colorScheme.onPrimary,
+        tint = MaterialTheme.colorScheme.onError,
         contentDescription = stringResource(Res.string.common_content_description_delete)
     )
 }
