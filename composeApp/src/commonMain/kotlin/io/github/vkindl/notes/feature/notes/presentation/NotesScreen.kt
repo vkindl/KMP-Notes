@@ -31,9 +31,11 @@ import composemultiplatformnotes.composeapp.generated.resources.notes_screen_tit
 import io.github.vkindl.notes.core.domain.Note
 import io.github.vkindl.notes.core.presentation.components.NotesSwipeToDismissBox
 import io.github.vkindl.notes.core.presentation.components.NotesTopAppBar
+import io.github.vkindl.notes.core.presentation.theme.NotesTheme
 import io.github.vkindl.notes.core.presentation.theme.dimens
 import io.github.vkindl.notes.feature.notes.presentation.NotesViewModel.NotesUiState
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -180,5 +182,35 @@ private fun EmptyNotesContent(
         contentAlignment = Alignment.Center
     ) {
         Text(text = stringResource(Res.string.notes_screen_empty_state))
+    }
+}
+
+@Composable
+@Preview
+private fun NotesScreenPreview() {
+    NotesTheme {
+        Content(
+            state = NotesUiState.NOTES(
+                notes = listOf(
+                    Note(
+                        id = 1,
+                        title = "Title 1",
+                        description = "Description 1"
+                    ),
+                    Note(
+                        id = 2,
+                        title = "Title 2",
+                        description = "Description 2"
+                    ),
+                    Note(
+                        id = 3,
+                        title = "Title 3",
+                        description = "Description 3"
+                    )
+                )
+            ),
+            onDetail = {},
+            onDelete = {}
+        )
     }
 }

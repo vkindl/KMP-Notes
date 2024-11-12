@@ -21,7 +21,9 @@ import composemultiplatformnotes.composeapp.generated.resources.note_detail_scre
 import io.github.vkindl.notes.core.presentation.components.NotesIconButton
 import io.github.vkindl.notes.core.presentation.components.NotesTextField
 import io.github.vkindl.notes.core.presentation.components.NotesTopAppBar
+import io.github.vkindl.notes.core.presentation.theme.NotesTheme
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -99,5 +101,23 @@ private fun Content(
                 )
             )
         }
+    }
+}
+
+@Composable
+@Preview
+private fun NoteDetailScreenPreview() {
+    NotesTheme {
+        Content(
+            state = NoteDetailViewModel.NoteDetailUiState(
+                id = 1,
+                title = "Title",
+                description = "Description",
+            ),
+            onBack = {},
+            onTitleChange = {},
+            onDescriptionChange = {},
+            onSave = {}
+        )
     }
 }
