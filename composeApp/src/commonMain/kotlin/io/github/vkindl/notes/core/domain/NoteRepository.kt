@@ -2,7 +2,7 @@ package io.github.vkindl.notes.core.domain
 
 import kotlinx.coroutines.flow.Flow
 
-interface NotesRepository {
+interface NoteRepository {
 
     fun observeAllNotes(): Flow<List<Note>>
 

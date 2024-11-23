@@ -3,7 +3,7 @@ package io.github.vkindl.notes.core.data.source
 import io.github.vkindl.notes.core.data.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
-interface NotesLocalDataSource {
+interface NoteLocalDataSource {
 
     fun observeAllNotes(): Flow<List<NoteEntity>>
 

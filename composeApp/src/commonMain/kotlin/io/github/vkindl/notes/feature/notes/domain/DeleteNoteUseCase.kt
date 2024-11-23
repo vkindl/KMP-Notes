@@ -1,11 +1,11 @@
 package io.github.vkindl.notes.feature.notes.domain
 
-import io.github.vkindl.notes.core.domain.NotesRepository
+import io.github.vkindl.notes.core.domain.NoteRepository
 
 class DeleteNoteUseCase(
-    private val notesRepository: NotesRepository
+    private val noteRepository: NoteRepository
 ) {
     suspend operator fun invoke(id: Int) {
-        notesRepository.deleteNoteById(id)
+        noteRepository.deleteNoteById(id)
     }
 }

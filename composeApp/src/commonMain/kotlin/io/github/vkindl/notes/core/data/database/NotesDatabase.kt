@@ -9,7 +9,7 @@ import io.github.vkindl.notes.core.data.model.NoteEntity
 @Database(entities = [NoteEntity::class], version = 1)
 @ConstructedBy(NotesDatabaseConstructor::class)
 abstract class NotesDatabase : RoomDatabase() {
-    abstract fun notesDao(): NotesDao
+    abstract fun notesDao(): NoteDao
 }
 
 @Suppress("NO_ACTUAL_FOR_EXPECT")

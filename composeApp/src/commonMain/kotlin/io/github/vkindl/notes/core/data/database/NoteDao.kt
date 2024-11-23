@@ -8,7 +8,7 @@ import io.github.vkindl.notes.core.data.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface NotesDao {
+interface NoteDao {
 
     @Query("SELECT * FROM note")
     fun observeAllNotes(): Flow<List<NoteEntity>>

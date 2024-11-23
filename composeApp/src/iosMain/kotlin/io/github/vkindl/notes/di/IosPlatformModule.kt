@@ -2,7 +2,6 @@ package io.github.vkindl.notes.di
 
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import io.github.vkindl.notes.core.data.database.NotesDao
 import io.github.vkindl.notes.core.data.database.NotesDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.Dispatchers
