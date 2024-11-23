@@ -51,7 +51,6 @@ private fun Content(
     onSave: () -> Unit
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
         topBar = {
             NotesTopAppBar(
                 title = {},

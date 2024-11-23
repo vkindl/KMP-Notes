@@ -60,21 +60,12 @@ private fun Content(
     onDelete: (Int) -> Unit
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
         topBar = {
             NotesTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(Res.string.notes_screen_title)
-                    )
-                }
+                title = { Text(text = stringResource(Res.string.notes_screen_title)) }
             )
         },
-        floatingActionButton = {
-            AddNoteFloatingActionButton(
-                onClick = onDetail
-            )
-        }
+        floatingActionButton = { AddNoteFloatingActionButton(onClick = onDetail) }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -82,8 +73,8 @@ private fun Content(
                 .padding(padding)
         ) {
             when (state) {
-                is NotesUiState.EMPTY -> EmptyNotesContent()
-                is NotesUiState.NOTES -> {
+                is NotesUiState.Empty -> EmptyNotesContent()
+                is NotesUiState.Notes -> {
                     NotesContent(
                         notes = state.notes,
                         onDetail = onDetail,
@@ -164,11 +155,7 @@ private fun AddNoteFloatingActionButton(
                 contentDescription = stringResource(Res.string.common_content_description_add)
             )
         },
-        text = {
-            Text(
-                text = stringResource(Res.string.notes_screen_add_note_button_text)
-            )
-        },
+        text = { Text(text = stringResource(Res.string.notes_screen_add_note_button_text)) },
         onClick = { onClick(null) }
     )
 }
@@ -190,7 +177,7 @@ private fun EmptyNotesContent(
 private fun NotesScreenPreview() {
     NotesTheme {
         Content(
-            state = NotesUiState.NOTES(
+            state = NotesUiState.Notes(
                 notes = listOf(
                     Note(
                         id = 1,

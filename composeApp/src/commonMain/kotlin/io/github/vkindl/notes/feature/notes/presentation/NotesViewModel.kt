@@ -16,11 +16,11 @@ class NotesViewModel(
 ) : ViewModel() {
 
     val state = observeNotesUseCase().map { notes ->
-        if (notes.isEmpty()) NotesUiState.EMPTY else NotesUiState.NOTES(notes)
+        if (notes.isEmpty()) NotesUiState.Empty else NotesUiState.Notes(notes)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000),
-        NotesUiState.EMPTY
+        NotesUiState.Empty
     )
 
     fun deleteNote(id: Int) {
@@ -30,7 +30,7 @@ class NotesViewModel(
     }
 
     sealed interface NotesUiState {
-        data object EMPTY : NotesUiState
-        data class NOTES(val notes: List<Note>) : NotesUiState
+        data object Empty : NotesUiState
+        data class Notes(val notes: List<Note>) : NotesUiState
     }
 }

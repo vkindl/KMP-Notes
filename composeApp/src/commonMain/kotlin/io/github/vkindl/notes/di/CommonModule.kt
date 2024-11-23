@@ -1,9 +1,9 @@
 package io.github.vkindl.notes.di
 
-import io.github.vkindl.notes.core.data.NoteRepositoryImpl
+import io.github.vkindl.notes.core.data.DefaultNoteRepository
 import io.github.vkindl.notes.core.data.database.NotesDatabase
 import io.github.vkindl.notes.core.data.source.NoteLocalDataSource
-import io.github.vkindl.notes.core.data.source.NoteLocalDataSourceImpl
+import io.github.vkindl.notes.core.data.source.DefaultNoteLocalDataSource
 import io.github.vkindl.notes.core.domain.NoteRepository
 import io.github.vkindl.notes.feature.notes.domain.DeleteNoteUseCase
 import io.github.vkindl.notes.feature.detail.domain.ObserveNoteUseCase
@@ -19,8 +19,8 @@ expect val platformModule: Module
 
 val commonModule = module {
     single { get<NotesDatabase>().notesDao() }
-    single<NoteLocalDataSource> { NoteLocalDataSourceImpl(get()) }
-    single<NoteRepository> { NoteRepositoryImpl(get()) }
+    single<NoteLocalDataSource> { DefaultNoteLocalDataSource(get()) }
+    single<NoteRepository> { DefaultNoteRepository(get()) }
 
     factory { ObserveNotesUseCase(get()) }
     factory { ObserveNoteUseCase(get()) }
