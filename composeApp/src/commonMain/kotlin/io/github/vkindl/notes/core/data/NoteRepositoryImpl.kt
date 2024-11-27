@@ -6,7 +6,7 @@ import io.github.vkindl.notes.core.domain.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class DefaultNoteRepository(
+class NoteRepositoryImpl(
     private val noteLocalDataSource: NoteLocalDataSource
 ) : NoteRepository {
 

@@ -4,7 +4,7 @@ import io.github.vkindl.notes.core.data.database.NoteDao
 import io.github.vkindl.notes.core.data.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
-class DefaultNoteLocalDataSource(
+class NoteLocalDataSourceImpl(
     private val noteDao: NoteDao
 ) : NoteLocalDataSource {
 

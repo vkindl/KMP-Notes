@@ -4,10 +4,15 @@ import io.github.vkindl.notes.core.domain.NoteRepository
 import io.github.vkindl.notes.core.domain.Note
 import kotlinx.coroutines.flow.Flow
 
-class ObserveNotesUseCase(
+class ObserveNotesUseCaseImpl(
     private val noteRepository: NoteRepository
-) {
-    operator fun invoke(): Flow<List<Note>> {
+) : ObserveNotesUseCase {
+
+    override operator fun invoke(): Flow<List<Note>> {
         return noteRepository.observeAllNotes()
     }
+}
+
+interface ObserveNotesUseCase {
+    operator fun invoke(): Flow<List<Note>>
 }
