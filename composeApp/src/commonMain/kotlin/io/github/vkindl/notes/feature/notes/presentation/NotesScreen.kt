@@ -28,6 +28,7 @@ import composemultiplatformnotes.composeapp.generated.resources.common_content_d
 import composemultiplatformnotes.composeapp.generated.resources.notes_screen_add_note_button_text
 import composemultiplatformnotes.composeapp.generated.resources.notes_screen_empty_state
 import composemultiplatformnotes.composeapp.generated.resources.notes_screen_title
+import composemultiplatformnotes.composeapp.generated.resources.notes_screen_title_placeholder
 import io.github.vkindl.notes.core.domain.Note
 import io.github.vkindl.notes.core.presentation.components.NotesSwipeToDismissBox
 import io.github.vkindl.notes.core.presentation.components.NotesTopAppBar
@@ -42,22 +43,24 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun NotesScreen(
     viewModel: NotesViewModel = koinViewModel(),
-    navToDetail: (Int?) -> Unit
+    navToDetail: () -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Content(
         state = state,
         onDetail = navToDetail,
-        onDelete = viewModel::deleteNote
+        onDelete = viewModel::deleteNote,
+        setSelectedNoteId = viewModel::setSelectedNoteId
     )
 }
 
 @Composable
 private fun Content(
     state: NotesUiState,
-    onDetail: (Int?) -> Unit,
-    onDelete: (Int) -> Unit
+    onDetail: () -> Unit,
+    onDelete: (Int) -> Unit,
+    setSelectedNoteId: (Int?) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -65,7 +68,14 @@ private fun Content(
                 title = { Text(text = stringResource(Res.string.notes_screen_title)) }
             )
         },
-        floatingActionButton = { AddNoteFloatingActionButton(onClick = onDetail) }
+        floatingActionButton = {
+            AddNoteFloatingActionButton(
+                onClick = {
+                    setSelectedNoteId(null)
+                    onDetail()
+                }
+            )
+        }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -78,7 +88,8 @@ private fun Content(
                     NotesContent(
                         notes = state.notes,
                         onDetail = onDetail,
-                        onDelete = onDelete
+                        onDelete = onDelete,
+                        setSelectedNoteId = setSelectedNoteId
                     )
                 }
             }
@@ -90,8 +101,9 @@ private fun Content(
 private fun NotesContent(
     modifier: Modifier = Modifier,
     notes: List<Note>,
-    onDetail: (Int) -> Unit,
-    onDelete: (Int) -> Unit
+    onDetail: () -> Unit,
+    onDelete: (Int) -> Unit,
+    setSelectedNoteId: (Int) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
@@ -101,7 +113,10 @@ private fun NotesContent(
         items(notes, key = { item -> item.id }) { note ->
             NoteItem(
                 note = note,
-                onDetailClick = onDetail,
+                onDetailClick = {
+                    setSelectedNoteId(note.id)
+                    onDetail()
+                },
                 onDeleteClick = onDelete
             )
         }
@@ -111,19 +126,20 @@ private fun NotesContent(
 @Composable
 private fun NoteItem(
     note: Note,
-    onDetailClick: (Int) -> Unit,
+    onDetailClick: () -> Unit,
     onDeleteClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     NotesSwipeToDismissBox(action = { onDeleteClick(note.id) }) {
         ElevatedCard(
             modifier = modifier,
-            onClick = { onDetailClick(note.id) }
+            onClick = { onDetailClick() }
         ) {
             ListItem(
                 headlineContent = {
                     Text(
-                        text = note.title,
+                        text = note.title.takeIf { it.isNotBlank() }
+                            ?: stringResource(Res.string.notes_screen_title_placeholder),
                         maxLines = 1,
                         overflow = Ellipsis
                     )
@@ -145,7 +161,7 @@ private fun NoteItem(
 @Composable
 private fun AddNoteFloatingActionButton(
     modifier: Modifier = Modifier,
-    onClick: (Int?) -> Unit
+    onClick: () -> Unit
 ) {
     ExtendedFloatingActionButton(
         modifier = modifier,
@@ -156,7 +172,7 @@ private fun AddNoteFloatingActionButton(
             )
         },
         text = { Text(text = stringResource(Res.string.notes_screen_add_note_button_text)) },
-        onClick = { onClick(null) }
+        onClick = onClick
     )
 }
 
@@ -197,7 +213,8 @@ private fun NotesScreenPreview() {
                 )
             ),
             onDetail = {},
-            onDelete = {}
+            onDelete = {},
+            setSelectedNoteId = {}
         )
     }
 }

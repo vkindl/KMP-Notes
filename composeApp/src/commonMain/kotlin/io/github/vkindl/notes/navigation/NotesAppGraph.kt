@@ -15,9 +15,7 @@ fun NotesAppGraph(navController: NavHostController = rememberNavController()) {
     NavHost(navController = navController, startDestination = Notes) {
         composable<Notes> {
             NotesScreen(
-                navToDetail = { id ->
-                    navController.navigate(Detail(id))
-                }
+                navToDetail = { navController.navigate(Detail) }
             )
         }
         composable<Detail> {

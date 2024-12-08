@@ -3,6 +3,7 @@
     <string name="notes_screen_title">Notes</string>
     <string name="notes_screen_empty_state">No items found</string>
     <string name="notes_screen_add_note_button_text">Add Note</string>
+    <string name="notes_screen_title_placeholder">Untitled</string>
 
     <!-- Note Detail Screen -->
     <string name="note_detail_screen_title">Note Detail</string>

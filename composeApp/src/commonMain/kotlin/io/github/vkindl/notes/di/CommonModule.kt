@@ -1,10 +1,12 @@
 package io.github.vkindl.notes.di
 
 import io.github.vkindl.notes.core.data.NoteRepositoryImpl
+import io.github.vkindl.notes.core.data.SelectedNoteRepositoryImpl
 import io.github.vkindl.notes.core.data.database.NotesDatabase
 import io.github.vkindl.notes.core.data.source.NoteLocalDataSource
 import io.github.vkindl.notes.core.data.source.NoteLocalDataSourceImpl
 import io.github.vkindl.notes.core.domain.NoteRepository
+import io.github.vkindl.notes.core.domain.SelectedNoteRepository
 import io.github.vkindl.notes.feature.detail.domain.ObserveNoteUseCase
 import io.github.vkindl.notes.feature.detail.domain.ObserveNoteUseCaseImpl
 import io.github.vkindl.notes.feature.detail.domain.SaveNoteUseCase
@@ -27,6 +29,7 @@ val commonModule = module {
     single { get<NotesDatabase>().notesDao() }
     single<NoteLocalDataSource> { NoteLocalDataSourceImpl(get()) }
     single<NoteRepository> { NoteRepositoryImpl(get()) }
+    single<SelectedNoteRepository> { SelectedNoteRepositoryImpl() }
 
     factoryOf(::ObserveNotesUseCaseImpl) bind ObserveNotesUseCase::class
     factoryOf(::ObserveNoteUseCaseImpl) bind ObserveNoteUseCase::class

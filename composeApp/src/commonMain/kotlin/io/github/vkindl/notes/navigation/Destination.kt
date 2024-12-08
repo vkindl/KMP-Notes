@@ -8,5 +8,5 @@ sealed class Destination {
     data object Notes : Destination()
 
     @Serializable
-    data class Detail(val id: Int?) : Destination()
+    data object Detail : Destination()
 }

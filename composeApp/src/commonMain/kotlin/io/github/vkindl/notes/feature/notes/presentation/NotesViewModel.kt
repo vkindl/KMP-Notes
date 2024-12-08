@@ -3,6 +3,7 @@ package io.github.vkindl.notes.feature.notes.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.vkindl.notes.core.domain.Note
+import io.github.vkindl.notes.core.domain.SelectedNoteRepository
 import io.github.vkindl.notes.feature.notes.domain.DeleteNoteUseCase
 import io.github.vkindl.notes.feature.notes.domain.ObserveNotesUseCase
 import kotlinx.coroutines.flow.SharingStarted
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 
 class NotesViewModel(
     private val deleteNoteUseCase: DeleteNoteUseCase,
+    private val selectedNoteRepository: SelectedNoteRepository,
     observeNotesUseCase: ObserveNotesUseCase
 ) : ViewModel() {
 
@@ -27,6 +29,10 @@ class NotesViewModel(
         viewModelScope.launch {
             deleteNoteUseCase(id)
         }
+    }
+
+    fun setSelectedNoteId(id: Int?) {
+        selectedNoteRepository.setNoteId(id)
     }
 
     sealed interface NotesUiState {

@@ -3,9 +3,12 @@ package io.github.vkindl.notes.feature.notes.presentation
 import dev.mokkery.answering.returns
 import dev.mokkery.every
 import dev.mokkery.everySuspend
+import dev.mokkery.matcher.any
 import dev.mokkery.mock
+import dev.mokkery.verify
 import dev.mokkery.verifySuspend
 import io.github.vkindl.notes.core.domain.Note
+import io.github.vkindl.notes.core.domain.SelectedNoteRepository
 import io.github.vkindl.notes.feature.notes.domain.DeleteNoteUseCase
 import io.github.vkindl.notes.feature.notes.domain.ObserveNotesUseCase
 import kotlinx.coroutines.Dispatchers
@@ -29,6 +32,7 @@ class NotesViewModelTest {
 
     private lateinit var deleteNoteUseCase: DeleteNoteUseCase
     private lateinit var observeNotesUseCase: ObserveNotesUseCase
+    private lateinit var selectedNoteRepository: SelectedNoteRepository
     private lateinit var sut: NotesViewModel
 
     @BeforeTest
@@ -41,10 +45,15 @@ class NotesViewModelTest {
         observeNotesUseCase = mock {
             every { invoke() } returns flowOf(listOf(note))
         }
+        selectedNoteRepository = mock {
+            every { getNoteId() } returns null
+            every { setNoteId(any()) } returns Unit
+        }
 
         sut = NotesViewModel(
             deleteNoteUseCase = deleteNoteUseCase,
-            observeNotesUseCase = observeNotesUseCase
+            observeNotesUseCase = observeNotesUseCase,
+            selectedNoteRepository = selectedNoteRepository
         )
     }
 
@@ -65,6 +74,13 @@ class NotesViewModelTest {
         sut.deleteNote(ANY_ID)
 
         verifySuspend { deleteNoteUseCase(ANY_ID) }
+    }
+
+    @Test
+    fun `should set selected note id`() {
+        sut.setSelectedNoteId(ANY_ID)
+
+        verify { selectedNoteRepository.setNoteId(ANY_ID) }
     }
 
     private companion object {
